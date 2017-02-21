@@ -50,6 +50,8 @@ const (
 	CmdMerkleBlock = "merkleblock"
 	CmdReject      = "reject"
 	CmdSendHeaders = "sendheaders"
+	CmdBFD         = "bfd"
+	CmdGetBFD      = "getbfd"
 )
 
 // WireEncoding represents the wire message encoding format to be used.
@@ -151,6 +153,12 @@ func makeEmptyMessage(command string) (Message, error) {
 
 	case CmdSendHeaders:
 		msg = &MsgSendHeaders{}
+
+	case CmdBFD:
+		msg = &MsgBFD{}
+
+	case CmdGetBFD:
+		msg = &MsgGetBFD{}
 
 	default:
 		return nil, fmt.Errorf("unhandled command [%s]", command)
